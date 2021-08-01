@@ -6,7 +6,7 @@ function Favorite(props) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			className="prefix__ionicon"
+			className="prefix__ionicon is-primary"
 			viewBox="0 0 512 512"
 			width={width}
 			height={height}

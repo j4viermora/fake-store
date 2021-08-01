@@ -1,17 +1,17 @@
 import Head from 'next/head';
 import Layout from '../ui/layout';
-
+import DisplayCategories from '../ui/components/DisplayCategories';
+import CountDown from '../ui/components/CountDown';
+import Container from '../ui/components/Container';
 export default function Home() {
 	return (
 		<>
+			<Head></Head>
 			<Layout>
-				<section className="section is-medium">
-					<h1 className="title">Medium section</h1>
-					<h2 className="subtitle">
-						A simple container to divide your page into{' '}
-						<strong>sections</strong>, like the one you're currently reading.
-					</h2>
-				</section>
+				<DisplayCategories />
+				<Container>
+					<CountDown />
+				</Container>
 			</Layout>
 		</>
 	);
