@@ -33,7 +33,7 @@ export default function SingleProduct({
 						</div>
 					</div>
 					<div className="column">
-						<h2 className="title">{title}</h2>
+						<h2 className="title is-2">{title}</h2>
 						<span className="tag is-warning">{category}</span>
 						<hr />
 						<h3 className="title is-2 has-text-info-dark">{price}$USD</h3>
@@ -46,7 +46,9 @@ export default function SingleProduct({
 								type="number"
 								className="input is-info"
 							/>
-							<button className="button is-primary mt-3">ADD TO CART</button>
+							<button type="submit" className="button is-primary mt-3">
+								ADD TO CART
+							</button>
 						</form>
 					</div>
 				</div>
