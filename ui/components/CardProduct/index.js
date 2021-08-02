@@ -1,6 +1,7 @@
 import React from 'react';
 import { rounded } from '../../../styles/theme';
-import Image from 'next/image';
+import Link from 'next/link';
+
 export default function CardProduct({
 	title,
 	price,
@@ -24,7 +25,11 @@ export default function CardProduct({
 					<div className="title is-6">{price}$USD</div>
 				</div>
 				<div className="is-flex is-justify-content-space-evenly is-align-items-center buttons">
-					<button className="button is-info">SEE MORE</button>
+					<button className="button is-info">
+						<Link href={`/${category}/${id}`}>
+							<a className="has-text-link-light">SEE MORE</a>
+						</Link>
+					</button>
 					<button className="button is-primary">ADD CART</button>
 				</div>
 			</div>

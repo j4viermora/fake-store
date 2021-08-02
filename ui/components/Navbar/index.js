@@ -1,6 +1,7 @@
 import React from 'react';
 import Favorite from '../../Icons/Favorite';
 import Bag from '../../Icons/Bag';
+import Link from 'next/link';
 
 export default function Navbar() {
 	const button = {
@@ -18,9 +19,11 @@ export default function Navbar() {
 			>
 				<div className="container">
 					<div className="navbar-brand">
-						<a className="navbar-item" href="#">
-							<strong>Fake Store</strong>
-						</a>
+						<Link href="/">
+							<a className="navbar-item">
+								<strong>Fake Store</strong>
+							</a>
+						</Link>
 
 						<a
 							role="button"
@@ -38,7 +41,7 @@ export default function Navbar() {
 					<div id="navbarBasicExample" className="navbar-menu">
 						<div className="navbar-start">
 							<a className="navbar-item">Tienda</a>
-							<a className="navbar-item">Categorías</a>
+							{/* <a className="navbar-item">Categorías</a> */}
 
 							<div className="navbar-item has-dropdown is-hoverable">
 								<a className="navbar-link">Más</a>

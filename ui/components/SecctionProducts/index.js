@@ -22,16 +22,19 @@ export default function SectionProducts({
 						({ category }) => category == categorySection.toLocaleLowerCase()
 					)
 					.slice(0, 4)
-					.map(({ id, price, title, description, image }) => (
+					.map(({ id, price, title, description, image, category }) => (
 						<div key={id} className="column is-one-quarter">
 							<CardProduct
 								price={price}
 								title={title}
 								description={description}
 								image={image}
+								id={id}
+								category={category}
 							/>
 						</div>
 					))}
+				{isError && 'Somethin is wrong... sorry'}
 			</div>
 			<div className="is-flex is-justify-content-center">
 				<button className="button is-link">SEE MORE</button>
