@@ -19,12 +19,7 @@ export default function Navbar() {
 				<div className="container">
 					<div className="navbar-brand">
 						<a className="navbar-item" href="#">
-							{/* <img
-							src="https://bulma.io/images/bulma-logo.png"
-							width="112"
-							height="28"
-						/> */}
-							<strong>Store Fake</strong>
+							<strong>Fake Store</strong>
 						</a>
 
 						<a
@@ -66,9 +61,10 @@ export default function Navbar() {
 								<div className="select is-primary">
 									<select>
 										<option>Todas las categorias</option>
-										<option>Categoria 1</option>
-										<option>Categoria 2</option>
-										<option>Categoria 3</option>
+										<option>Electronics</option>
+										<option>Jewelery</option>
+										<option>Women's clothing</option>
+										<option>Men's clothing</option>
 									</select>
 								</div>
 							</div>
