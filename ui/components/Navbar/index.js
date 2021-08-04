@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Favorite from '../../Icons/Favorite';
 import Bag from '../../Icons/Bag';
 import Link from 'next/link';
+import { useStoreContext } from '../../../context/StoreContext';
+import Cart from '../Cart';
 
 export default function Navbar() {
-	const button = {
-		border: 'none',
-		background: 'none',
-		cursor: 'pointer',
+	const user = "Sorry I don't recognize you";
+	const [open, setOpen] = useState(false);
+
+	const handleOpenMenu = () => {
+		setOpen(!open);
 	};
+
+	const {
+		storeState: { cart },
+	} = useStoreContext();
+
+	console.log(cart);
 
 	return (
 		<>
@@ -24,21 +33,34 @@ export default function Navbar() {
 								<strong>Fake Store</strong>
 							</a>
 						</Link>
-
+						<p className="navbar-item is-hidden-desktop">Search</p>
+						<div className="navbar-item is-hidden-desktop">
+							<div onClick={() => console.log('Agregado lista de deseos')}>
+								<Favorite width={35} height={35} color="white" />
+							</div>
+						</div>
+						<div className="navbar-item is-hidden-desktop">
+							<div onClick={() => console.log('Carrito')}>
+								<Bag color="white" height={35} width={35} />
+							</div>
+						</div>
 						<a
 							role="button"
-							className="navbar-burger"
+							className={`navbar-burger ${open && 'is-active'}`}
 							aria-label="menu"
 							aria-expanded="false"
 							data-target="navbarBasicExample"
+							onClick={handleOpenMenu}
 						>
 							<span aria-hidden="true"></span>
 							<span aria-hidden="true"></span>
 							<span aria-hidden="true"></span>
 						</a>
 					</div>
-
-					<div id="navbarBasicExample" className="navbar-menu">
+					<div
+						id="navbarBasicExample"
+						className={`navbar-menu  ${open && 'is-active'}`}
+					>
 						<div className="navbar-start">
 							<a className="navbar-item">Tienda</a>
 							{/* <a className="navbar-item">Categorías</a> */}
@@ -54,7 +76,7 @@ export default function Navbar() {
 									<a className="navbar-item">Reporta un problema</a>
 								</div>
 							</div>
-							<form className="navbar-item">
+							<form className="navbar-item is-hidden-mobile">
 								<input
 									placeholder="Buscar tus productos"
 									className="input is-primary"
@@ -71,33 +93,57 @@ export default function Navbar() {
 									</select>
 								</div>
 							</div>
-							<div className="navbar-item">
-								<button
-									style={button}
-									onClick={() => console.log('Agregado lista de deseos')}
-								>
+							<div className="navbar-item is-hidden-mobile">
+								<div onClick={() => console.log('Agregado lista de deseos')}>
 									<Favorite width={35} height={35} color="white" />
-								</button>
+								</div>
 							</div>
-							<div className="navbar-item">
-								<button style={button} onClick={() => console.log('Carrito')}>
-									<Bag color="white" height={35} width={35} />
-								</button>
+							<div className="navbar-item has-dropdown is-hoverable is-hidden-mobile">
+								<div className="navbar-item has-dropdown is-hoverable">
+									<a className="navbar-link">
+										<Bag color="white" height={35} width={35} />
+									</a>
+									<div className="navbar-dropdown">
+										{!!cart ? (
+											cart?.map(
+												({ id, image, title, price, countProduct }, index) => (
+													<Cart
+														id={id}
+														image={image}
+														title={title}
+														price={price}
+														countProduct={countProduct}
+														index={index}
+													/>
+												)
+											)
+										) : (
+											<>
+												<a className="navbar-item is-primary">
+													<div>
+														<p>Not item in the cart</p>
+													</div>
+												</a>
+												<hr className="navbar-divider" />
+											</>
+										)}
+									</div>
+								</div>
 							</div>
+							<div className="navbar-item is-hidden-mobile">{user}</div>
 						</div>
 
 						<div className="navbar-end">
 							<div className="navbar-item has-dropdown is-hoverable">
-								<a className="navbar-link">Edentificate</a>
+								<a className="navbar-link">Edentify</a>
 								<div className="navbar-dropdown">
 									<a className="navbar-item is-primary">
-										<strong>Registro</strong>
+										<strong>Register</strong>
 									</a>
 									<hr className="navbar-divider" />
-									<a className="navbar-item is-light">Inicio de sesión</a>
+									<a className="navbar-item is-light">Login</a>
 								</div>
 							</div>
-							<div className="navbar-item"></div>
 						</div>
 					</div>
 				</div>

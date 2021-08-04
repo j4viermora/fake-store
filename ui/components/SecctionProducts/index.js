@@ -21,8 +21,8 @@ export default function SectionProducts({
 					?.filter(
 						({ category }) => category == categorySection.toLocaleLowerCase()
 					)
-					.slice(0, 4)
-					.map(({ id, price, title, description, image, category }) => (
+					?.slice(0, 4)
+					?.map(({ id, price, title, description, image, category }) => (
 						<div key={id} className="column is-one-quarter">
 							<CardProduct
 								price={price}

@@ -1,10 +1,4 @@
-import {
-	createContext,
-	useContext,
-	useEffect,
-	useReducer,
-	useState,
-} from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import { storeReducer } from './storeReducer';
 const StoreContext = createContext();
 
@@ -12,13 +6,12 @@ const initialState = {
 	searchProducts: '',
 	wishList: '',
 	countDown: null,
-	cart: '',
+	cart: [],
 	menuOpen: false,
 };
 
 export function StoreProvider({ children }) {
-	const { storeState, dispatch } = useReducer(storeReducer, initialState);
-
+	const [storeState, dispatch] = useReducer(storeReducer, initialState);
 	const ctx = {
 		storeState,
 		dispatch,
@@ -28,5 +21,5 @@ export function StoreProvider({ children }) {
 }
 
 export function useStoreContext() {
-	return useContext(AppContext);
+	return useContext(StoreContext);
 }

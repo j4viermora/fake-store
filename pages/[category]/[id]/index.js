@@ -4,6 +4,7 @@ import Layout from '../../../ui/layout';
 import Head from 'next/head';
 import SingleProduct from '../../../ui/components/SingleProduct';
 import { RelatedProducts } from '../../../ui/components/RelatedProducst';
+
 export default function SingleProductPage({
 	data: { title, price, description, category, image, id },
 	relatedProducts,
@@ -32,21 +33,22 @@ export default function SingleProductPage({
 }
 
 export async function getServerSideProps({ params }) {
-	const resp = await axios.get(
-		`https://fakestoreapi.com/products/${params.id}`
-	);
+	try {
+		const resp = await axios.get(
+			`https://fakestoreapi.com/products/${params.id}`
+		);
 
-	const resp2 = await axios.get(
-		`https://fakestoreapi.com/products/category/${params.category}`
-	);
+		const resp2 = await axios.get(
+			`https://fakestoreapi.com/products/category/${params.category}`
+		);
+		const data = await resp.data;
+		const relatedProducts = await resp2.data;
 
-	const data = await resp.data;
-	const relatedProducts = await resp2.data;
-
-	return {
-		props: {
-			data,
-			relatedProducts,
-		},
-	};
+		return {
+			props: {
+				data,
+				relatedProducts,
+			},
+		};
+	} catch (err) {}
 }

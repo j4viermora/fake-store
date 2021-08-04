@@ -1,17 +1,20 @@
 import { useRouter } from 'next/dist/client/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Layout from '../../ui/layout';
 
 export default function Product() {
-	const router = useRouter();
-
-	useEffect(() => {
-		router.push('/');
-	}, []);
-
 	return (
 		<Layout>
-			<div>Products</div>
+			<div className="section">
+				<div className="columns">
+					<div className="column is-two-fifths"></div>
+					<div className="column">
+						<div className="columns is-multiline">
+							<div className="column is-one-quarter"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</Layout>
 	);
 }

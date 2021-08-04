@@ -1,5 +1,8 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { useStoreContext } from '../../../context/StoreContext';
+import { TYPES } from '../../../context/types';
+
 export default function SingleProduct({
 	image,
 	title,
@@ -18,10 +21,20 @@ export default function SingleProduct({
 				title,
 				price,
 				id,
+				image,
 			};
-			alert(JSON.stringify(order));
+			handleAddToCard(order);
 		},
 	});
+
+	const { dispatch } = useStoreContext();
+
+	const handleAddToCard = (data) => {
+		dispatch({
+			type: TYPES.ADD_TO_CART,
+			payload: data,
+		});
+	};
 
 	return (
 		<>

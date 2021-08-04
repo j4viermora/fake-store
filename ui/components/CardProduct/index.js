@@ -1,21 +1,29 @@
-import React from 'react';
-import { rounded } from '../../../styles/theme';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { useStoreContext } from '../../../context/StoreContext';
+import { TYPES } from '../../../context/types';
 
-export default function CardProduct({
-	title,
-	price,
-	description,
-	image,
-	category,
-	id,
-}) {
+export default function CardProduct({ title, price, image, category, id }) {
+	const { dispatch } = useStoreContext();
+	const [state, setState] = useState(true);
+	const handleAddToCart = () => {
+		setState(!state);
+		console.log(state);
+		dispatch({
+			type: TYPES.ADD_TO_CART,
+			payload: {
+				title,
+				price,
+				image,
+				id,
+				countProduct: 1,
+			},
+		});
+	};
+
 	return (
 		<>
-			<div
-				className="card py-3 px-3"
-				style={{ ...rounded, minHeight: '450px' }}
-			>
+			<div className="card py-3 px-3 is-rounded" style={{ minHeight: '450px' }}>
 				{' '}
 				<div className="is-flex is-justify-content-center">
 					<img src={image} alt={title} />
@@ -30,7 +38,13 @@ export default function CardProduct({
 							<a className="has-text-link-light">SEE MORE</a>
 						</Link>
 					</button>
-					<button className="button is-primary">ADD CART</button>
+					<button
+						name={id}
+						onClick={handleAddToCart}
+						className="button is-primary"
+					>
+						{state & (id === id) ? 'ADD CART' : 'ADDED'}
+					</button>
 				</div>
 			</div>
 			<style jsx>{`

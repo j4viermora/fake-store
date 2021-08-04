@@ -1,9 +1,13 @@
 import { useQuery } from 'react-query';
 
 export const getProducts = async () => {
-	const resp = await fetch('https://fakestoreapi.com/products');
-	const data = await resp.json();
-	return data;
+	try {
+		const resp = await fetch('https://fakestoreapi.com/products');
+		const data = await resp.json();
+		return [...data, true];
+	} catch (err) {
+		return ['Algo anda mal', false];
+	}
 };
 
 export const useGetPruducts = (products) => {

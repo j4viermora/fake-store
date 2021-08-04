@@ -8,6 +8,8 @@ import SectionProducts from '../ui/components/SecctionProducts';
 
 export default function Home({ products }) {
 	const { data, isError, isLoading } = useGetPruducts(products);
+	console.log({ isError, isLoading });
+
 	return (
 		<>
 			<Head>
@@ -17,27 +19,35 @@ export default function Home({ products }) {
 				<DisplayCategories />
 				<Container>
 					<CountDown />
-					<SectionProducts
-						data={data}
-						isError={isError}
-						isLoading={isLoading}
-						titleSection="Electronics"
-						categorySection={'Electronics'}
-					/>
-					<SectionProducts
-						data={data}
-						isError={isError}
-						isLoading={isLoading}
-						titleSection="Men's clothing"
-						categorySection="men's clothing"
-					/>
-					<SectionProducts
-						data={data}
-						isError={isError}
-						isLoading={isLoading}
-						titleSection="Jewelery"
-						categorySection="jewelery"
-					/>
+					{products[1] | !!data ? (
+						<>
+							<SectionProducts
+								data={data}
+								isError={isError}
+								isLoading={isLoading}
+								titleSection="Electronics"
+								categorySection={'Electronics'}
+							/>
+							<SectionProducts
+								data={data}
+								isError={isError}
+								isLoading={isLoading}
+								titleSection="Men's clothing"
+								categorySection="men's clothing"
+							/>
+							<SectionProducts
+								data={data}
+								isError={isError}
+								isLoading={isLoading}
+								titleSection="Jewelery"
+								categorySection="jewelery"
+							/>
+						</>
+					) : (
+						<h2 className="title is-1 has-text-centered my-6 py-6">
+							Algo anda mal...
+						</h2>
+					)}
 				</Container>
 			</Layout>
 		</>
