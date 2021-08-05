@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useStoreContext } from '../../../context/StoreContext';
-import { TYPES } from '../../../context/types';
+import { addToCart } from '../../../context/actions/cartActions';
 
 export default function CardProduct({ title, price, image, category, id }) {
 	const { dispatch } = useStoreContext();
 	const [state, setState] = useState(true);
 	const handleAddToCart = () => {
 		setState(!state);
-		console.log(state);
-		dispatch({
-			type: TYPES.ADD_TO_CART,
-			payload: {
-				title,
-				price,
-				image,
-				id,
-				countProduct: 1,
-			},
-		});
+		const order = {
+			title,
+			price,
+			image,
+			id,
+			countProduct: 1,
+		};
+		dispatch(addToCart(order));
 	};
 
 	return (

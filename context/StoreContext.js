@@ -8,6 +8,7 @@ const initialState = {
 	countDown: null,
 	cart: [],
 	menuOpen: false,
+	items: false,
 };
 
 export function StoreProvider({ children }) {

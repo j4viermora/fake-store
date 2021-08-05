@@ -6,6 +6,20 @@ const storeReducer = (state, action) => {
 			return {
 				...state,
 				cart: [...state.cart, action.payload],
+				items: true,
+			};
+		case TYPES.REMOVE_CART:
+			if (state.cart.length == 1) {
+				return {
+					...state,
+					items: false,
+				};
+			}
+			return {
+				...state,
+				cart: [
+					...state.cart.filter((product) => product.id !== action.payload.id),
+				],
 			};
 
 		default:

@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { deleteProductCart } from '../../../context/actions/cartActions';
+import { useStoreContext } from '../../../context/StoreContext';
 
 export default function Cart({ index, image, title, price, countProduct, id }) {
+	const { dispatch } = useStoreContext();
+
+	const handleDeleteProduct = () => {
+		dispatch(deleteProductCart(id));
+	};
+
 	return (
 		<>
 			<div key={index}>
@@ -8,13 +16,18 @@ export default function Cart({ index, image, title, price, countProduct, id }) {
 					<div>
 						<img src={image} />
 						<div id="cart-item" className="ml-3">
-							<h4>{title}</h4>
+							<h4>{title.substring(0, 30)}</h4>
 							<p>Price: {price}$USD</p>
 							<p>
 								<strong>Count:</strong> {countProduct}
 							</p>
 							<button className="button mt-3 is-primary mr-1">Buy</button>
-							<button className="button mt-3 is-danger">Delete</button>
+							<button
+								onClick={handleDeleteProduct}
+								className="button mt-3 is-danger"
+							>
+								Delete
+							</button>
 						</div>
 					</div>
 				</a>

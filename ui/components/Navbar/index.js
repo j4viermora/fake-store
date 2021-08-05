@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Favorite from '../../Icons/Favorite';
 import Bag from '../../Icons/Bag';
 import Link from 'next/link';
@@ -14,10 +14,8 @@ export default function Navbar() {
 	};
 
 	const {
-		storeState: { cart },
+		storeState: { cart, items },
 	} = useStoreContext();
-
-	console.log(cart);
 
 	return (
 		<>
@@ -104,7 +102,7 @@ export default function Navbar() {
 										<Bag color="white" height={35} width={35} />
 									</a>
 									<div className="navbar-dropdown">
-										{!!cart ? (
+										{items ? (
 											cart?.map(
 												({ id, image, title, price, countProduct }, index) => (
 													<Cart

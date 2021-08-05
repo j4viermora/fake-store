@@ -8,7 +8,6 @@ import SectionProducts from '../ui/components/SecctionProducts';
 
 export default function Home({ products }) {
 	const { data, isError, isLoading } = useGetPruducts(products);
-	console.log({ isError, isLoading });
 
 	return (
 		<>
