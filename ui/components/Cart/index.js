@@ -6,7 +6,7 @@ export default function Cart({ index, image, title, price, countProduct, id }) {
 	const { dispatch } = useStoreContext();
 
 	const handleDeleteProduct = () => {
-		dispatch(deleteProductCart(id));
+		dispatch(deleteProductCart(title));
 	};
 
 	return (

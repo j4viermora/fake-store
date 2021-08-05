@@ -39,6 +39,7 @@ export default function CardProduct({ title, price, image, category, id }) {
 						name={id}
 						onClick={handleAddToCart}
 						className="button is-primary"
+						disabled={!state}
 					>
 						{state & (id === id) ? 'ADD CART' : 'ADDED'}
 					</button>

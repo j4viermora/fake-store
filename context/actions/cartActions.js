@@ -1,10 +1,10 @@
 import { TYPES } from '../types';
 
-export const deleteProductCart = (id) => {
+export const deleteProductCart = (title) => {
 	return {
 		type: TYPES.REMOVE_CART,
 		payload: {
-			id,
+			title,
 		},
 	};
 };

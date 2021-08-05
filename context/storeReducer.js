@@ -9,17 +9,26 @@ const storeReducer = (state, action) => {
 				items: true,
 			};
 		case TYPES.REMOVE_CART:
+			console.log(state.cart);
 			if (state.cart.length == 1) {
 				return {
 					...state,
+					cart: [
+						...state.cart.filter(
+							(product) => product.title !== action.payload.title
+						),
+					],
 					items: false,
 				};
 			}
 			return {
 				...state,
 				cart: [
-					...state.cart.filter((product) => product.id !== action.payload.id),
+					...state.cart.filter(
+						(product) => product.title !== action.payload.title
+					),
 				],
+				items: true,
 			};
 
 		default:

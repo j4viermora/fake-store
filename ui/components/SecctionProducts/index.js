@@ -1,3 +1,4 @@
+import { useRouter } from 'next/dist/client/router';
 import React from 'react';
 import CardProduct from '../CardProduct';
 
@@ -8,6 +9,12 @@ export default function SectionProducts({
 	isError,
 	categorySection = '',
 }) {
+	const router = useRouter();
+
+	const handleSectionMore = () => {
+		router.push(`/store?q=${categorySection}`);
+	};
+
 	return (
 		<section className="my-6">
 			<h3 className="is-size-1 mb-6 pb-3 has-text-centered">
@@ -37,7 +44,9 @@ export default function SectionProducts({
 				{isError && 'Somethin is wrong... sorry'}
 			</div>
 			<div className="is-flex is-justify-content-center">
-				<button className="button is-link">SEE MORE</button>
+				<button onClick={handleSectionMore} className="button is-link">
+					SEE MORE
+				</button>
 			</div>
 		</section>
 	);

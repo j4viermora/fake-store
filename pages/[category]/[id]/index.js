@@ -34,15 +34,16 @@ export default function SingleProductPage({
 
 export async function getServerSideProps({ params }) {
 	try {
-		const resp = await axios.get(
-			`https://fakestoreapi.com/products/${params.id}`
-		);
+		const resp = axios.get(`https://fakestoreapi.com/products/${params.id}`);
 
-		const resp2 = await axios.get(
+		const resp2 = axios.get(
 			`https://fakestoreapi.com/products/category/${params.category}`
 		);
-		const data = await resp.data;
-		const relatedProducts = await resp2.data;
+
+		const [product, related] = await Promise.all([resp, resp2]);
+
+		const data = await product.data;
+		const relatedProducts = await related.data;
 
 		return {
 			props: {

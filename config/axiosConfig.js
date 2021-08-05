@@ -1,6 +1,5 @@
-const { axios } = require('axios');
+import axios from 'axios';
 
 export const storeAxios = axios.create({
-	baseURL: 'https://fakestoreapi.com/',
-	timeout: 3000,
+	baseURL: 'https://fakestoreapi.com',
 });
