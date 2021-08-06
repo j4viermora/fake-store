@@ -78,6 +78,9 @@ export default function Navbar() {
 								<input
 									placeholder="Buscar tus productos"
 									className="input is-primary"
+									onChange={() =>
+										alert('Sorry this function still is development')
+									}
 								/>
 							</form>
 							<div className="navbar-item">
@@ -91,9 +94,37 @@ export default function Navbar() {
 									</select>
 								</div>
 							</div>
-							<div className="navbar-item is-hidden-mobile">
-								<div onClick={() => console.log('Agregado lista de deseos')}>
-									<Favorite width={35} height={35} color="white" />
+
+							<div className="navbar-item has-dropdown is-hoverable is-hidden-mobile">
+								<div className="navbar-item has-dropdown is-hoverable">
+									<a className="navbar-link">
+										<Favorite width={35} height={35} color="white" />
+									</a>
+									<div className="navbar-dropdown">
+										{items ? (
+											cart?.map(
+												({ id, image, title, price, countProduct }, index) => (
+													<Cart
+														id={id}
+														image={image}
+														title={title}
+														price={price}
+														countProduct={countProduct}
+														index={index}
+													/>
+												)
+											)
+										) : (
+											<>
+												<a className="navbar-item is-primary">
+													<div>
+														<p>Not item in wishlist </p>
+													</div>
+												</a>
+												<hr className="navbar-divider" />
+											</>
+										)}
+									</div>
 								</div>
 							</div>
 							<div className="navbar-item has-dropdown is-hoverable is-hidden-mobile">
@@ -135,11 +166,15 @@ export default function Navbar() {
 							<div className="navbar-item has-dropdown is-hoverable">
 								<a className="navbar-link">Edentify</a>
 								<div className="navbar-dropdown">
-									<a className="navbar-item is-primary">
-										<strong>Register</strong>
-									</a>
+									<Link href="/register">
+										<a className="navbar-item is-primary">
+											<strong>Register</strong>
+										</a>
+									</Link>
 									<hr className="navbar-divider" />
-									<a className="navbar-item is-light">Login</a>
+									<Link href="/login">
+										<a className="navbar-item is-light">Login</a>
+									</Link>
 								</div>
 							</div>
 						</div>

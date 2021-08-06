@@ -11,9 +11,9 @@ export default function CountDown() {
 					</div>
 					<div className="py-5 pr-5">
 						<div className="is-flex is-justify-content-center">
-							<span className="is-size-3 mr-5">1:</span>
+							<span className="is-size-3 mr-5">5:</span>
 							<span className="is-size-3 mr-5">2:</span>
-							<span className="is-size-3 mr-5">56</span>
+							<span className="is-size-3 mr-5">30</span>
 						</div>
 						<div>
 							<span className="is-size-7 mr-5">Días</span>

@@ -30,6 +30,25 @@ const storeReducer = (state, action) => {
 				],
 				items: true,
 			};
+		case TYPES.SEE_PRODUCTS_HANDLE: {
+			return {
+				...state,
+				seeProducts: action.payload,
+			};
+		}
+
+		case 'openModal': {
+			return {
+				...state,
+				modal: true,
+			};
+		}
+		case 'closeModal': {
+			return {
+				...state,
+				modal: false,
+			};
+		}
 
 		default:
 			state;

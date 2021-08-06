@@ -1,4 +1,6 @@
 import React from 'react';
+import { seeProductsHandler } from '../../../context/actions/ui';
+import { useStoreContext } from '../../../context/StoreContext';
 
 export default function FilterProducts() {
 	return (
@@ -32,16 +34,25 @@ export default function FilterProducts() {
 }
 
 export function SortProducts() {
+	const {
+		storeState: { seeProducts },
+		dispatch,
+	} = useStoreContext();
+
+	const handleSort = ({ target }) => {
+		dispatch(seeProductsHandler(target.value));
+	};
+
 	return (
 		<div className="is-flex is-justify-content-space-between">
 			<h3 className="title is-4 is-flex-grow-5">Products</h3>
 			<div className="is-flex is-justify-content-space-evenly is-flex-grow-1">
 				<div class="control">
 					<div class="select is-primary">
-						<select>
-							<option>See 5</option>
-							<option>See 10</option>
-							<option>See 20</option>
+						<select value={seeProducts} onChange={handleSort}>
+							<option value={5}>See 5</option>
+							<option value={10}>See 10</option>
+							<option value={20}>See 20</option>
 						</select>
 					</div>
 				</div>

@@ -9,6 +9,9 @@ const initialState = {
 	cart: [],
 	menuOpen: false,
 	items: false,
+	seeProducts: 5,
+	allProducts: [],
+	modal: false,
 };
 
 export function StoreProvider({ children }) {

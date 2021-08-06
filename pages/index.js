@@ -5,6 +5,7 @@ import CountDown from '../ui/components/CountDown';
 import Container from '../ui/components/Container';
 import { getProducts, useGetPruducts } from '../hooks/useGetProduct';
 import SectionProducts from '../ui/components/SecctionProducts';
+import Modal from '../ui/components/Modal';
 
 export default function Home({ products }) {
 	const { data, isError, isLoading } = useGetPruducts(products);
